@@ -204,3 +204,22 @@ if ( ! function_exists( 'twentytwentyfour_pattern_categories' ) ) :
 endif;
 
 add_action( 'init', 'twentytwentyfour_pattern_categories' );
+
+
+
+
+
+// /* adding action hook to existing 24 theme using post format  */
+// add_action('after_setup_theme' , 'wp_modified_content');
+// function wp_modified_content(){
+// 	add_theme_support('post-formats' , array('aside', 'gallery'));
+// }
+
+/* using filter hook  */
+add_filter('the_content' , 'modifying_text_func');
+
+function modifying_text_func($content){
+	$additional_content = '<!-- wp:paragraph --><p> Filtered through <i> the_content used by the filter hook function </i></p><!-- /wp:paragraph -->';
+	$content  = $content . $additional_content;
+	return $content;
+}

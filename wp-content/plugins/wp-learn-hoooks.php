@@ -5,9 +5,12 @@
  * Description : A Simple plugin  to demonstarte how to use hooks in wordpress.
  * Version : 1
  */
+//[filter hook] add filter - syntax - add_filter( 'hook_name', 'your_custom_function', [priority], [accepted_args] );
 
- add_filter( 'the_content' , 'wp_learn_amend_content');
+ add_filter( 'the_content' , 'modify_post_content');  // here wp_adding text is function name 
 
- function wp_learn_amend_content($content){
+ function modify_post_content($content){
     return '<p>thanks for reading!</p>' . $content;
  }
+ /* example of removing filter hook using remove filter  */
+ remove_filter( 'the_content', 'modify_post_content' );
