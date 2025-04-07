@@ -7,10 +7,9 @@
  */
 //[filter hook] add filter - syntax - add_filter( 'hook_name', 'your_custom_function', [priority], [accepted_args] );
 
- add_filter( 'the_content' , 'modify_post_content');  // here wp_adding text is function name 
-
- function modify_post_content($content){
-    return '<p>thanks for reading!</p>' . $content;
- }
+//  add_filter( 'the_content' , 'modify_post_content');  
+//  function modify_post_content($content){
+//     return '<p>thanks for reading!</p>' . $content;
+//  }
  /* example of removing filter hook using remove filter  */
- remove_filter( 'the_content', 'modify_post_content' );
+//  remove_filter( 'the_content', 'modify_post_content' );
