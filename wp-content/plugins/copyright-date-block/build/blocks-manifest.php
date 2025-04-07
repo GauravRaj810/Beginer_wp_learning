@@ -9,16 +9,22 @@ return array(
 		'title' => 'Copyright Date Block',
 		'category' => 'widgets',
 		'icon' => 'calendar',
-		'description' => 'Add a copyright date to a post or page',
+		'description' => 'Add a copyright date to your post and Page.',
 		'example' => array(
 			
 		),
+		'attributes' => array(
+			'startingYear' => array(
+				'type' => 'string',
+				'default' => 2000
+			)
+		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'align' => true
 		),
 		'textdomain' => 'copyright-date-block',
 		'editorScript' => 'file:./index.js',
-		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css'
 	)
 );

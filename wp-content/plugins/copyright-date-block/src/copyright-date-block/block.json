@@ -6,13 +6,21 @@
 	"title": "Copyright Date Block",
 	"category": "widgets",
 	"icon": "calendar",
-	"description": "Add a copyright date to a post or page",
+	"description": "Add a copyright date to your post and Page.",
 	"example": {},
+	"attributes": {
+		"startingYear":{
+			"type":"string",
+			"default": 2000
+		}
+	},
 	"supports": {
-		"html": false
+		"html": false,
+		"align": true
 	},
 	"textdomain": "copyright-date-block",
 	"editorScript": "file:./index.js",
-	"editorStyle": "file:./index.css",
+
 	"style": "file:./style-index.css"
+
 }
