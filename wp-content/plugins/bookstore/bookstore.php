@@ -31,6 +31,7 @@ function bookstore_register_book_post_type(){
         'public'=>true, // Set to true, this makes the custom post type publicly accessible.
         'has_archive' => true, //Allows an archive page for this custom post type (e.g., your-site.com/books/).
         'show_in_rest' => true,
+        'rest_base'    =>  'books',
         'supports' => array('title' , 'editor' , 'author' , 'thumbnail' , 'excerpt' , 'custom-fields'), //Defines which features are supported for this post type. In your case, it supports the title, editor, author, thumbnail, and excerpt.
 
         // here above custom fields for adding meta data ...using custom field panel for these custom post type must support this thats why we added  
@@ -69,6 +70,31 @@ function bookstore_add_isbn_to_quick_edit($keys , $post){
     return $keys;
 }
 
+add_action('admin_menu' , 'bookstore_add_booklist_submenu', 11);
+function bookstore_add_booklist_submenu(){
+    add_submenu_page(
+        'edit.php?post_type=book',
+        'Book List',
+        'Book List',
+        'edit_posts',
+        'book-list',
+        'bookstore_render_booklist'  // Corrected the typo here
+    );
+}
+
+function bookstore_render_booklist(){
+    ?>
+    <div class="wrap" id="bookstore-booklist-admin">
+        <h1>Actions</h1>
+        <button id="bookstore-load-books">Load Books</button>
+        <button id="bookstore-fetch-books">Fetch Books</button>
+        <h2>Books</h2>
+        <textarea id="bookstore-booklist" cols="125" rows="15"></textarea>
+    </div>
+    <?php    
+}
+
+
 // adding custom js - 
 add_action('wp_enqueue_scripts' , 'bookstore_enqueue_scripts');
 function bookstore_enqueue_scripts(){
@@ -83,4 +109,14 @@ function bookstore_enqueue_scripts(){
     );
 }
 
+add_action('admin_enqueue_scripts' , 'bookstore_admin_enqueue_scripts');
+function bookstore_admin_enqueue_scripts(){
+    wp_enqueue_script(
+        'bookstore-admin-script',
+        plugins_url() . '/bookstore/admin_bookstore.js',
+        array('wp-api' , 'wp-api-fetch'),
+        '1.0.0',
+        true
+    );
+}
 
